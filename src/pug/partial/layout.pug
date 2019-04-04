@@ -1,0 +1,35 @@
+doctype html
+html(lang='ja')
+  block vars
+  head
+    //- GAを入れる場合はheadタグ先頭に挿入する
+    //- include analytics
+    //- 文字コード,X-UA-Compatible,Viewportを先頭で必ず指定する
+    meta(charset='UTF-8')
+    meta(http-equiv='x-ua-compatible' content='ie=edge')
+    //- document.documentElement.clientWidthが指定のサイズとなる use-scalable=noでズームできない
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    title #{title}
+    //- meta descriptionは必ず記載する
+    meta(name='description', content=`${description}`)
+    meta(name='keywords', content=`${keywords}`)
+    //- 自動リンク無効化
+    meta(name='format-detection' content='telephone=no')
+    //- Open Graph Protocol ソーシャルシェア用表示
+    meta(property="og:title" content=`${title}`)
+    meta(property="og:description" content=`${description}`)
+    meta(property='og:type', content='website')
+    meta(property='og:url', content=`${url}`)
+    meta(property='og:image', content=`${ogImage}`)
+    meta(property='og:site_name', content=`${siteName}`)
+    //- Twitterカード設定 summary or summary_large_image
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:site" content="@ユーザー名")
+    //- CSSはhead内でJSよりも先に読み込む
+    link(rel='stylesheet', href=`${style}`)
+    //- スプライト画像のプリロード
+    //- link(rel='preload' href='assets/img/sprite.png' as='image')
+  body(class=bodyClass)
+    block contents
+    //- JSはbody最下部で読み込む
+    block script

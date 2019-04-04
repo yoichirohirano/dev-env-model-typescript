@@ -1,0 +1,21 @@
+%clearfix{
+  &:after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+%bg_txt_none{
+  text-indent: -9999px;
+  overflow: hidden;
+}
+%bonus-animation{
+  transition: all 1s ease;
+}
+.nowrap{
+  white-space: nowrap;
+}
+
+.transparent {
+  opacity: 0;
+}

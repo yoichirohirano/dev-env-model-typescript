@@ -1,0 +1,22 @@
+extends ../partial/layout.pug
+
+block vars
+  - var date        = Date.now();
+  - var bodyClass   = ''
+  - var title       = 'title insert here'
+  - var description = ''
+  - var keywords    = ''
+  - var url         = ''
+  - var ogImage     = ''
+  - var siteName   = ''
+  - var style       = './css/index.css?version=' + date
+
+block script
+  script(charset="UTF-8" defer src='./js/vendor.bundle.js?version=' + date)
+  script(charset='UTF-8' defer src='./js/index.bundle.js?version=' + date)
+
+
+block contents
+  main#main(role='main')
+    section
+      p.title DevEnv Model
