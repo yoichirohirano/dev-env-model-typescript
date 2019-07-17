@@ -3,25 +3,25 @@ const webpack = require('webpack');
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Cssnano = require('cssnano');
+const Autoprefixer = require('autoprefixer');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isDevelop = process.env.NODE_ENV === 'development';
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  // エントリーポイントの指定 キーはコンパイルするjsの名前(下部の[name])になる
   entry: {
-    // Polyfillがあればエントリーポイントの前に読み込むこと
-    index: [path.resolve(__dirname, 'src/webpack/index.ts')],
+    index: [path.resolve(__dirname, 'src/js/index.ts')],
   },
   output: {
     path: path.resolve(__dirname, 'dist/js'),
     filename: '[name].bundle.js',
   },
-  // vagrantでlinuxを立てその中でwebpackを実行する場合、以下を指定しないとwatchされない
-  watchOptions: {
-    poll: true,
-  },
+  // vagrantでLinuxを立てその中でwebpackを実行する場合、以下を指定しないとwatchされない
+  // watchOptions: {
+  //   poll: true,
+  // },
   optimization: {
     // 共通モジュールのバンドル
     splitChunks: {
@@ -45,16 +45,6 @@ module.exports = {
         use: 'ts-loader',
       },
       {
-        test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-        ],
-        exclude: /node_modules/,
-      },
-
-      {
         test: /\.pug$/,
         loader: 'pug-plain-loader',
       },
@@ -70,6 +60,10 @@ module.exports = {
               // 1 => postcss-loader;
               // 2 => postcss-loader, sass-loader
               importLoaders: 2,
+              // CSS内のurl()メソッドの取り込み trueでBase64画像としてCSSに取り込む
+              url: false,
+              // true で CSS Modules 有効化
+              modules: false,
             },
           },
           {
@@ -80,17 +74,11 @@ module.exports = {
                 ? []
                 : [
                     // CSS圧縮有効化
-                    require('cssnano')({
+                    Cssnano({
                       preset: 'default',
                     }),
                     // Autoprefixer有効化
-                    require('autoprefixer')({
-                      browsers: [
-                        'last 2 versions',
-                        'ie >= 11',
-                        'Android >= 4.4',
-                        'safari >= 9',
-                      ],
+                    Autoprefixer({
                       // グリッドレイアウト有効化
                       grid: true,
                     }),
@@ -108,12 +96,17 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(gif|png|jpg|eot|wof|woff|woff2|ttf|svg)$/,
+        // 画像をBase64として取り込む
+        loader: 'url-loader',
+      },
     ],
   },
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, 'src')],
-    // ビルド対象に含めたいファイルの拡張子を Array で指定
-    extensions: ['*', '.ts', '.js', '.vue', '.json'], // デフォルトでは ['.wasm', '.mjs', '.js', '.json']
+    // 拡張子を省略してimportできる拡張子の設定 デフォルトは ['.wasm', '.mjs', '.js', '.json']
+    extensions: ['*', '.ts', '.js', '.vue', '.json'],
   },
   plugins: [
     // bundleサイズの表示
@@ -126,12 +119,12 @@ module.exports = {
     // JS内の'process.env.NODE_ENV'が'development'か'production'に置き換わる
     new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
     // 共通プラグインを利用するときはこれを書いておけばインポート不要
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      velocity: 'velocity-animate',
-      axios: 'axios',
-      _: 'lodash',
-    }),
+    // 不要なものも記載するとグローバルからバンドルされるので注意
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery',
+    //   velocity: 'velocity-animate',
+    //   axios: 'axios',
+    // }),
   ],
 };

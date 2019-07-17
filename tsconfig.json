@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "target": "es5", // TSはECMAScript 5に変換
-    "module": "es2015" // TSのモジュールはES Modulesとして出力
+    "target": "es5", // TSはECMAScript5に変換(IE11、Android4.4もOK)
+    "module": "es2015", // TreeShakingのため
+    "moduleResolution": "node", // Node方式でモジュール解決
+    "lib": ["es2017", "dom"] // コンパイルに含めるライブラリファイル指定
   }
 }

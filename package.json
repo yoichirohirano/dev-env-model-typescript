@@ -1,24 +1,68 @@
 {
+  "name": "dev-env-model-typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Yoichiro Hirano",
+  "license": "MIT",
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 11",
+    "Android >= 4.4",
+    "safari >= 9"
+  ],
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "no-console": 0,
+      "no-alert": 0,
+      "no-debugger": 1,
+      "@typescript-eslint/rule-name": "error"
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "jquery": true,
+      "jest": true
+    },
+    "extends": [
+      "airbnb-base"
+    ],
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser",
+      "sourceType": "module"
+    },
+    "globals": {
+      "velocity": true,
+      "_": true,
+      "axios": true,
+      "YT": true,
+      "anime": true
+    }
+  },
   "scripts": {
-    "dev": "npm-run-all -p build:pug develop:webpack 'watch:*'",
-    "build": "npm-run-all -p 'build:*' copy:images",
-    "develop:webpack": "NODE_ENV=development webpack --watch --mode development --display-error-details --progress --colors",
-    "build:webpack": "NODE_ENV=production webpack --mode production --display-error-details --progress --colors",
-    "json-server": "json-server --watch db.json",
+    "dev": "npm-run-all -p build:pug 'develop:*' 'watch:*'",
+    "build": "npm-run-all -p 'build:*'",
+    "develop:js": "NODE_ENV=development webpack --watch --mode development --display-error-details --progress --colors",
+    "build:js": "NODE_ENV=production webpack --mode production --display-error-details --progress --colors",
     "build:pug": "pug ./src/pug/pages/*.pug --pretty -o ./dist",
     "watch:pug": "chokidar './src/pug/**/*.pug' --command 'npm run build:pug'",
-    "watch:images": "chokidar './src/images/*' --command 'npm run copy:images'",
-    "copy:images": "cpx \"./src/images/**/*\" ./dist/images",
-    "test": "jest --watch",
-    "lint": "eslint ./src/webpack/**/*.js"
+    "json-server": "json-server --watch db.json",
+    "test": "jest --watch --silent=false --verbose false",
+    "lint": "eslint ./src/js/**/*.js"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.12.0",
     "autoprefixer": "^9.5.0",
     "chokidar-cli": "^1.2.2",
     "cpx": "^1.5.0",
-    "css-loader": "^2.1.1",
+    "css-loader": "^3.0.0",
     "cssnano": "^4.1.10",
-    "mini-css-extract-plugin": "^0.5.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
     "postcss-loader": "^3.0.0",
@@ -27,11 +71,13 @@
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "ts-loader": "^5.3.3",
+    "ts-loader": "^6.0.4",
     "typescript": "^3.4.1",
     "uglifyjs-webpack-plugin": "^2.1.2",
+    "url-loader": "^2.0.1",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.1.0",
     "webpack-cli": "^3.3.0"
-  }
+  },
+  "dependencies": {}
 }

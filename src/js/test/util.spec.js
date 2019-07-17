@@ -1,54 +1,55 @@
 import * as util from '../helper/util';
-import CONSTANT from '../helper/CONSTANT';
+import CONFIG from '../helper/CONFIG';
 
 describe('wrapAlphanumericWithSpan', () => {
+  const className = 'className'
   test('Normal - Single Sentence', () => {
     const string = 'One';
-    const newString = `<span class="${CONSTANT.TEST.CLASS_NAME}">${string}</span>`;
-    expect(util.wrapAlphanumericWithSpan({ string, className: CONSTANT.TEST.CLASS_NAME })).toEqual(
+    const newString = `<span class="${className}">${string}</span>`;
+    expect(util.wrapAlphanumericWithSpan({ string, className })).toEqual(
       newString,
     );
   });
   test('Normal - Multiple Sentences', () => {
     const string = '1 2';
     const words = string.split(' ');
-    const newString = `<span class="${CONSTANT.TEST.CLASS_NAME}">${words[0]}</span> <span class="${
-      CONSTANT.TEST.CLASS_NAME
+    const newString = `<span class="${className}">${words[0]}</span> <span class="${
+      className
     }">${words[1]}</span>`;
-    expect(util.wrapAlphanumericWithSpan({ string, className: CONSTANT.TEST.CLASS_NAME })).toEqual(
+    expect(util.wrapAlphanumericWithSpan({ string, className })).toEqual(
       newString,
     );
   });
   test('Normal - Including Japanese', () => {
     const string = '英語with日本語';
-    const newString = `英語<span class="${CONSTANT.TEST.CLASS_NAME}">with</span>日本語`;
-    expect(util.wrapAlphanumericWithSpan({ string, className: CONSTANT.TEST.CLASS_NAME })).toEqual(
+    const newString = `英語<span class="${className}">with</span>日本語`;
+    expect(util.wrapAlphanumericWithSpan({ string, className })).toEqual(
       newString,
     );
   });
   test('Abnormal - Null Text', () => {
     const string = '';
-    expect(util.wrapAlphanumericWithSpan({ string, className: CONSTANT.TEST.CLASS_NAME })).toEqual(
+    expect(util.wrapAlphanumericWithSpan({ string, className })).toEqual(
       string,
     );
   });
   test('Abnormal - Null', () => {
     const string = null;
     function testNull() {
-      util.wrapAlphanumericWithSpan({ string, className: CONSTANT.TEST.CLASS_NAME });
+      util.wrapAlphanumericWithSpan({ string, className });
     }
     expect(testNull).toThrowError('String is invalid.');
   });
   test('Abnormal - undefined', () => {
     const string = undefined;
     function testNull() {
-      util.wrapAlphanumericWithSpan({ string, className: CONSTANT.TEST.CLASS_NAME });
+      util.wrapAlphanumericWithSpan({ string, className });
     }
     expect(testNull).toThrowError('String is invalid.');
   });
   test('Abnormal - No String', () => {
     function testNull() {
-      util.wrapAlphanumericWithSpan({ className: CONSTANT.TEST.CLASS_NAME });
+      util.wrapAlphanumericWithSpan({ className });
     }
     expect(testNull).toThrowError('String is invalid.');
   });
@@ -132,22 +133,22 @@ describe('isInRange', () => {
   // });
 });
 
-describe('getIndexValueOfGivenPercentage', () => {
+describe('getValueOfGivenPercentage', () => {
   test('Normal', () => {
     const odds = [100, 0, 0];
     const results = ['a', 'b', 'c'];
-    expect(util.getIndexValueOfGivenPercentage({ odds, results })).toMatch(/a/);
+    expect(util.getValueOfGivenPercentage({ odds, results })).toMatch(/a/);
   });
   test('Normal Second', () => {
     const odds = [0, 100, 0];
     const results = ['a', 'b', 'c'];
-    expect(util.getIndexValueOfGivenPercentage({ odds, results })).toMatch(/b/);
+    expect(util.getValueOfGivenPercentage({ odds, results })).toMatch(/b/);
   });
   test('Abnormal Unequal Length', () => {
     const odds = [0, 100];
     const results = ['a', 'b', 'c'];
     function test() {
-      util.getIndexValueOfGivenPercentage({ odds, results });
+      util.getValueOfGivenPercentage({ odds, results });
     }
     expect(test).toThrowError(/Lengths are not equal./);
   });
@@ -155,7 +156,7 @@ describe('getIndexValueOfGivenPercentage', () => {
     const odds = [20, 100, 40];
     const results = ['a', 'b', 'c'];
     function test() {
-      util.getIndexValueOfGivenPercentage({ odds, results });
+      util.getValueOfGivenPercentage({ odds, results });
     }
     expect(test).toThrowError(/Total odds must be 100./);
   });
@@ -168,5 +169,20 @@ describe('getQueryObject', () => {
       query2: 'two',
     };
     expect(util.getQueryObject()).toEqual(expect.objectContaining(expectedObject));
+  });
+});
+
+describe('getURLSearchParams', () => {
+  const params = {
+    property1: 'One',
+    property2: 2,
+  };
+  test('isInstanceOfURLSearchParams', () => {
+    expect(util.getURLSearchParams(params)).toBeInstanceOf(URLSearchParams);
+  });
+  test('hasCorrectProperties', () => {
+    const expectedRegExp = new RegExp('property1=One&property2=2');
+    const res = util.getURLSearchParams(params);
+    expect(res.toString()).toMatch(expectedRegExp);
   });
 });

@@ -1,23 +1,25 @@
 /**
  * @author Yoichiro Hirano
  * @description Develop Environment Model
- * @created 2018/12/03
+ * @created 2019/07/17
  * @link https://
  */
 
 import '../scss/index.scss';
+import CONFIG from './util/CONFIG';
+import EventEmitter from './util/EventEmitter';
+import { isSp } from './util/userAgent';
+import { getURLSearchParams } from './util/functions';
 
 export default class Index {
   /**
    * constructor
    */
   constructor() {
-    console.log(Index.getNumber());
-  }
-
-  static getNumber() {
-    const num: number = 12;
-    return num;
+    EventEmitter.on('dd', () => {
+      console.log(isSp);
+    });
+    EventEmitter.emit('dd');
   }
 }
 
