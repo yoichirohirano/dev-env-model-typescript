@@ -17,7 +17,7 @@ export default class Index {
    */
   constructor() {
     EventEmitter.on('dd', () => {
-      console.log(isSp);
+      console.log(window.innerHeight);
     });
     EventEmitter.emit('dd');
   }

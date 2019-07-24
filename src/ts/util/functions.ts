@@ -1,10 +1,10 @@
 import CONFIG from './CONFIG';
 
-export /**
+/**
  * スクロールを固定/固定解除する
  * @param fix 固定はtrue、解除はfalse
  */
-const toggleScroll = (fix: boolean) => {
+export const toggleScroll = (fix: boolean) => {
   const cancelEvent = (e: Event): void => {
     e.preventDefault();
   };
