@@ -56,8 +56,10 @@ export const wrapAlphanumericWithSpan = (
  * @param max 最大値
  * @returns ランダムな数値
  */
-export const randomIntegerInRange = (min: number = 0, max: number = 0) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
+export const randomIntegerInRange = (
+  min: number = 0,
+  max: number = 0,
+): number => Math.floor(Math.random() * (max - min + 1)) + min;
 
 /**
  * 範囲内判定
