@@ -237,3 +237,12 @@ export const fetchWithErrorHandling = ({ url, options }) => {
       })
   );
 };
+
+/**
+ * 金額をカンマ区切りの文字列にする
+ * @param price
+ * @returns
+ */
+export const getSeparatedPriceByComma = (price: number): string => {
+  return price.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+};
