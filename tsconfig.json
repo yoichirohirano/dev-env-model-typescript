@@ -4,6 +4,10 @@
     "target": "es5", // TSはECMAScript5に変換(IE11、Android4.4もOK)
     "module": "es2015", // TreeShakingのため
     "moduleResolution": "node", // Node方式でモジュール解決
-    "lib": ["es2017", "dom"] // コンパイルに含めるライブラリファイル指定
+    "lib": ["es2017", "dom"], // コンパイルに含めるライブラリファイル指定
+    "typeRoots": [
+      "node_modules/@types", // デフォルトではここだけ読む 忘れず書き添える
+      "types" // ここを読むように追記
+    ]
   }
 }

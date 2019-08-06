@@ -1,4 +1,5 @@
 import * as util from '../util/functions';
+import { address } from '../../../types/index';
 
 describe('wrapAlphanumericWithSpan', () => {
   const className = 'className';

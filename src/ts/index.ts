@@ -23,12 +23,6 @@ export default class Index {
   }
 }
 
-declare global {
-  interface Window {
-    DEV_ENV_MODEL: any;
-  }
-}
-
 window.addEventListener('DOMContentLoaded', () => {
   window.DEV_ENV_MODEL = window.DEV_ENV_MODEL || {};
   window.DEV_ENV_MODEL.INDEX = window.DEV_ENV_MODEL.INDEX || new Index();
