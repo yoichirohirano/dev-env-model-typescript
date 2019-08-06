@@ -43,6 +43,28 @@
       "anime": true
     }
   },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    }
+  },
   "scripts": {
     "dev": "npm-run-all -p build:pug 'develop:*' 'watch:*'",
     "build": "npm-run-all -p 'build:*'",
@@ -55,6 +77,7 @@
     "lint": "eslint ./src/js/**/*.js"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.17",
     "@typescript-eslint/eslint-plugin": "^1.12.0",
     "autoprefixer": "^9.5.0",
     "chokidar-cli": "^1.2.2",
@@ -62,6 +85,7 @@
     "css-loader": "^3.0.0",
     "cssnano": "^4.1.10",
     "eslint-config-airbnb": "^17.1.1",
+    "jest": "^24.8.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
@@ -71,8 +95,9 @@
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",
-    "typescript": "^3.4.1",
+    "typescript": "^3.5.3",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "url-loader": "^2.0.1",
     "webpack": "^4.29.6",
