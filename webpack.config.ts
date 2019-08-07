@@ -1,16 +1,16 @@
 // プラグインを利用するためにwebpackを読み込んでおく
-const webpack = require('webpack');
-const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Cssnano = require('cssnano');
-const Autoprefixer = require('autoprefixer');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+import * as webpack from 'webpack';
+import * as path from 'path';
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import Cssnano from 'cssnano';
+import Autoprefixer from 'autoprefixer';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const isDevelop = process.env.NODE_ENV === 'development';
 
-module.exports = {
-  mode: process.env.NODE_ENV,
+const config: webpack.Configuration = {
+  mode: isDevelop ? 'development' : 'production',
   entry: {
     index: [path.resolve(__dirname, 'src/ts/index.ts')],
   },
@@ -128,3 +128,5 @@ module.exports = {
     // }),
   ],
 };
+
+export default config;

@@ -2,7 +2,7 @@ import * as util from '../util/functions';
 import { address } from '../../../types/index';
 
 describe('wrapAlphanumericWithSpan', () => {
-  const className = 'className';
+  const className: string = 'className';
   test('Normal - Single Sentence', () => {
     const string = 'One';
     const newString = `<span class="${className}">${string}</span>`;
@@ -11,6 +11,7 @@ describe('wrapAlphanumericWithSpan', () => {
   test('Normal - Multiple Sentences', () => {
     const string = '1 2';
     const words = string.split(' ');
+
     const newString = `<span class="${className}">${
       words[0]
     }</span> <span class="${className}">${words[1]}</span>`;
