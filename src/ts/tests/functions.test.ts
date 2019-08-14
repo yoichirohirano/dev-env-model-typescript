@@ -3,11 +3,13 @@ import { address } from '../../../types/index';
 
 describe('wrapAlphanumericWithSpan', () => {
   const className = 'className';
+
   test('Normal - Single Sentence', () => {
     const string = 'One';
     const newString = `<span class="${className}">${string}</span>`;
     expect(util.wrapAlphanumericWithSpan(string, className)).toEqual(newString);
   });
+
   test('Normal - Multiple Sentences', () => {
     const string = '1 2';
     const words = string.split(' ');
@@ -16,15 +18,18 @@ describe('wrapAlphanumericWithSpan', () => {
     }</span> <span class="${className}">${words[1]}</span>`;
     expect(util.wrapAlphanumericWithSpan(string, className)).toEqual(newString);
   });
+
   test('Normal - Including Japanese', () => {
     const string = '英語with日本語';
     const newString = `英語<span class="${className}">with</span>日本語`;
     expect(util.wrapAlphanumericWithSpan(string, className)).toEqual(newString);
   });
+
   test('Abnormal - Null Text', () => {
     const string = '';
     expect(util.wrapAlphanumericWithSpan(string, className)).toEqual(string);
   });
+
   test('Abnormal - Null', () => {
     const string = null;
     function testNull() {
@@ -32,6 +37,7 @@ describe('wrapAlphanumericWithSpan', () => {
     }
     expect(testNull).toThrowError('String is invalid.');
   });
+
   test('Abnormal - undefined', () => {
     const string = undefined;
     function testNull() {
@@ -39,12 +45,14 @@ describe('wrapAlphanumericWithSpan', () => {
     }
     expect(testNull).toThrowError('String is invalid.');
   });
+
   test('Abnormal - No String', () => {
     function testNull() {
       util.wrapAlphanumericWithSpan(null, className);
     }
     expect(testNull).toThrowError('String is invalid.');
   });
+
   test('Abnormal - No ClassName', () => {
     const string = 'One';
     const newString = `<span class="">${string}</span>`;

@@ -12,18 +12,18 @@ import { isSp } from './util/userAgent';
 import { getURLSearchParams } from './util/functions';
 
 export default class Index {
+  testNumber: number = 11;
   /**
    * constructor
    */
   constructor() {
-    EventEmitter.on('dd', () => {
-      console.log(window.innerHeight);
+    EventEmitter.on('test', () => {
+      console.log(this.testNumber);
     });
-    EventEmitter.emit('dd');
+    EventEmitter.emit('test');
   }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  window.DEV_ENV_MODEL = window.DEV_ENV_MODEL || {};
-  window.DEV_ENV_MODEL.INDEX = window.DEV_ENV_MODEL.INDEX || new Index();
+  window.DEV_ENV_MODEL_INDEX = window.DEV_ENV_MODEL_INDEX || new Index();
 });
