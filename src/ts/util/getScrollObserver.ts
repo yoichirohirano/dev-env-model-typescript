@@ -57,10 +57,9 @@ const callbackTriggered = (
 
 /**
  * create IntersectionObserver object
- * @param $targets elements to be observed
- * @param options IntersectionObserver option
- * @param isOnce whether it trigger only once or not
  * @param callbacks functions to be triggered
+ * @param isOnce whether it trigger only once or not
+ * @param options IntersectionObserver option
  * @returns scrollObserver
  */
 export const getScrollObserver = (

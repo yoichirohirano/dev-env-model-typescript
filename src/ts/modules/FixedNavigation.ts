@@ -19,7 +19,6 @@ export default class FixedNavigation {
     this.$contentItems = Array.from(
       document.querySelectorAll('.contents .item'),
     );
-    this.currentIndex = 0;
 
     this.addEvent();
   }
@@ -32,7 +31,6 @@ export default class FixedNavigation {
     // ナビゲーションのクリックイベント
     this.$navigationItems.forEach(($item, index) => {
       $item.addEventListener('click', () => {
-        this.currentIndex = index;
         FixedNavigation.scrollTo(this.$contentItems[index]);
       });
     });
@@ -56,13 +54,12 @@ export default class FixedNavigation {
 
   toggleCurrent() {
     // BOTTOMの位置がプラスに変わるindex(=currentクラスをつけるindex)を取得する
-    const index = this.$contentItems.findIndex($item => {
-      const bottom = $item.getBoundingClientRect().bottom;
+    const currentIndex = this.$contentItems.findIndex($item => {
+      const { bottom } = $item.getBoundingClientRect();
       return bottom > 0;
     });
-    this.currentIndex = index;
     this.$navigationItems.forEach(($item, index) => {
-      if (index === this.currentIndex) {
+      if (index === currentIndex) {
         $item.classList.add('active');
       } else {
         $item.classList.remove('active');
