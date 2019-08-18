@@ -246,3 +246,39 @@ export const fetchWithErrorHandling = ({ url, options }) => {
 export const getSeparatedPriceByComma = (price: number): string => {
   return price.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
 };
+
+/**
+ * パスから画像を読み込みimg要素を生成する
+ * @param src 画像のパス
+ * @returns img要素
+ * @throws Error
+ */
+export const loadImage = (src: string): Promise<HTMLImageElement> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = e => reject(e);
+    img.src = src;
+  });
+};
+
+/**
+ * img要素からBase64形式の文字列を出力する
+ * @param image HTMLImageElement
+ * @param mimeType "image/png", "image/jpeg" など
+ * @returns "data:image/jpeg;base64,XXXXXX..." など
+ */
+export const getBase64FromImage = (
+  image: HTMLImageElement,
+  mimeType: string = 'image/jpeg',
+): string => {
+  // New Canvas
+  const canvas = document.createElement('canvas');
+  canvas.width = image.width;
+  canvas.height = image.height;
+  // Draw Image
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(image, 0, 0);
+  // To Base64
+  return canvas.toDataURL(mimeType);
+};
