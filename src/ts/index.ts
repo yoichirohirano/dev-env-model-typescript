@@ -12,7 +12,7 @@ import { isSp } from './util/userAgent';
 import { getURLSearchParams } from './util/functions';
 
 export default class Index {
-  testNumber: number = 11;
+  testNumber: number = 10;
   /**
    * constructor
    */

@@ -17,6 +17,7 @@ export interface dob {
   month: string;
   year: string;
 }
+
 declare global {
   interface Window {
     DEV_ENV_MODEL_INDEX: any;

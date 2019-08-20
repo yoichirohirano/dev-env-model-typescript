@@ -7,7 +7,10 @@
     "lib": ["es2017", "dom"], // コンパイルに含めるライブラリファイル指定
     "typeRoots": [
       "node_modules/@types", // デフォルトではここだけ読む 忘れず書き添える
-      "types" // ここを読むように追記
-    ]
-  }
+      "src/ts/types" // ここを読むように追記
+    ],
+    "jsx": "react" // .jsxファイルをReactファイルとしてコンパイル
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.test.ts"]
 }
