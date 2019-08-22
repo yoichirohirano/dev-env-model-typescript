@@ -21,5 +21,7 @@ export interface dob {
 declare global {
   interface Window {
     DEV_ENV_MODEL_INDEX: any;
+    // YouTube IFrame Player API
+    onYouTubeIframeAPIReady(): void;
   }
 }

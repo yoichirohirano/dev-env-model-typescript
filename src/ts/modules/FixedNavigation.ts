@@ -37,7 +37,7 @@ export default class FixedNavigation {
   }
 
   // スクロール監視を開始する
-  startObserve() {
+  startObserve(): void {
     this.sectionObserver = getScrollObserver(
       {
         onScrollDownIn: null,
@@ -46,6 +46,11 @@ export default class FixedNavigation {
         onScrollUpOut: null,
       },
       false,
+      {
+        root: null,
+        rootMargin: '0% 0% -40% 0%',
+        threshold: 0,
+      },
     );
     this.$contentItems.forEach($target => {
       this.sectionObserver.observe($target);
