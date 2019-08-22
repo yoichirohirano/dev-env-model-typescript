@@ -74,9 +74,8 @@
     "build:js": "NODE_ENV=production webpack --mode production --display-error-details --progress --colors",
     "build:pug": "pug ./src/pug/pages/*.pug --pretty -o ./dist",
     "watch:pug": "chokidar './src/pug/**/*.pug' --command 'npm run build:pug'",
-    "json-server": "json-server --watch db.json",
     "test": "jest --watch --silent=false --verbose false",
-    "lint": "eslint ./src/js/**/*.js"
+    "lint": "eslint ./src/ts/**/*.ts"
   },
   "devDependencies": {
     "@types/jest": "^24.0.17",
