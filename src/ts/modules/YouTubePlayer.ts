@@ -42,7 +42,9 @@ export default class YouTubePlayer {
       events: {
         // onReadyイベントが走るまでthis.playerはundefinedとなる
         onReady: this.onReady.bind(this),
-        onStateChange: this.onPlayerStateChange.bind(this),
+        onStateChange: event => {
+          this.onStateChange(event);
+        },
       },
       playerVars: {
         autoplay: 0,
@@ -65,7 +67,7 @@ export default class YouTubePlayer {
     this.player.playVideo();
   }
 
-  onPlayerStateChange(event) {
+  onStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
       this.isPlaying = true;
     } else if (event.data === YT.PlayerState.ENDED) {
