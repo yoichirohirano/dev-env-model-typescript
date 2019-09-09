@@ -1,5 +1,5 @@
 import anime from 'animejs';
-import getScrollObserver from '../util/getScrollObserver';
+import getScrollObserver from '../util/functions/getScrollObserver';
 
 /**
  * 固定ナビを扱うクラス

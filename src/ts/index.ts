@@ -8,8 +8,7 @@
 import '../scss/index.scss';
 import CONFIG from './util/CONFIG';
 import EventEmitter from './util/EventEmitter';
-import { isSp } from './util/userAgent';
-import { getURLSearchParams } from './util/functions';
+import { isSp } from './util/UserAgent';
 
 export default class Index {
   testNumber: number = 10;
