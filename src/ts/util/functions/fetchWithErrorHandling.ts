@@ -2,11 +2,10 @@ import CONFIG from '../CONFIG';
 
 /**
  * Fetch HTTP request with handling server errors
- * @param {Object} params
- * @param {string} param.url
- * @param {Object} param.options
- * @returns {Object} result
- * @throws {Error}
+ * @param url
+ * @param options
+ * @returns result data
+ * @throws Error
  */
 const fetchWithErrorHandling = (url: string, options: RequestInit): any => {
   // fetchの結果を非同期で返す
