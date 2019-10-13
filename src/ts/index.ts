@@ -8,16 +8,15 @@
 import '../scss/index.scss';
 import CONFIG from './util/CONFIG';
 import EventEmitter from './util/EventEmitter';
-import { isSp } from './util/UserAgent';
 
 export default class Index {
-  testNumber: number = 10;
+  private errorCode: string = CONFIG.ERROR[404];
   /**
    * constructor
    */
   constructor() {
     EventEmitter.on('test', () => {
-      console.log(this.testNumber);
+      console.log(this.errorCode);
     });
     EventEmitter.emit('test');
   }

@@ -2,10 +2,10 @@
  * YouTube動画を扱うクラス
  */
 export default class YouTubePlayer {
-  $player: HTMLElement;
-  id: string;
-  player: YT.Player;
-  isPlaying: boolean;
+  private $player: HTMLElement;
+  private id: string;
+  private player: YT.Player | null;
+  private isPlaying: boolean;
 
   /**
    * constructor
@@ -63,11 +63,13 @@ export default class YouTubePlayer {
 
   onReady() {
     // 消音しないとiOSで自動再生されない
-    this.player.mute();
-    this.player.playVideo();
+    if (this.player) {
+      this.player.mute();
+      this.player.playVideo();
+    }
   }
 
-  onStateChange(event) {
+  onStateChange(event: YT.OnStateChangeEvent) {
     if (event.data === YT.PlayerState.PLAYING) {
       this.isPlaying = true;
     } else if (event.data === YT.PlayerState.ENDED) {
@@ -79,16 +81,20 @@ export default class YouTubePlayer {
    * 再生
    */
   play() {
-    this.isPlaying = true;
-    this.player.playVideo();
+    if (this.player) {
+      this.isPlaying = true;
+      this.player.playVideo();
+    }
   }
 
   /**
    * 停止
    */
   stop() {
-    this.isPlaying = false;
-    this.player.stopVideo();
+    if (this.player) {
+      this.isPlaying = false;
+      this.player.stopVideo();
+    }
   }
 
   /**
@@ -100,10 +106,12 @@ export default class YouTubePlayer {
       const tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
       const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      window.onYouTubeIframeAPIReady = () => {
-        resolve(true);
-      };
+      if (firstScriptTag && firstScriptTag.parentNode) {
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        window.onYouTubeIframeAPIReady = () => {
+          resolve(true);
+        };
+      }
     });
   }
 }

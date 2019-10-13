@@ -13,7 +13,8 @@ const getBase64FromImageElement = (
   canvas.width = $image.width;
   canvas.height = $image.height;
   // Draw Image
-  const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
+  const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
+  if (!ctx) return '';
   ctx.drawImage($image, 0, 0);
   // To Base64
   return canvas.toDataURL(mimeType);
