@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-@import 'partial/reset';
-@import 'partial/module';
-@import 'partial/layout';
+@use 'partial/reset';
+@use 'partial/module';
+@use 'partial/layout';
 
 body {
   background: #eee;
@@ -11,6 +11,4 @@ body {
 .title {
   font-size: 25px;
   font-weight: bold;
-  // rootから指定する
-  // background-image: url(/images/futsal.svg);
 }

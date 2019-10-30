@@ -1,6 +1,8 @@
 // プラグインを利用するためにwebpackを読み込んでおく
 const webpack = require('webpack');
 const path = require('path');
+const Sass = require('sass');
+const Fiber = require('fibers')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Cssnano = require('cssnano');
@@ -96,6 +98,8 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
+              implementation: Sass,
+              fiber: Fiber,
               sourceMap: isDevelop,
               // 共通箇所の読み込み
               // data: '@import "_common.scss";',
