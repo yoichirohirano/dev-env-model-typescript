@@ -1,18 +1,23 @@
+const cancelEvent = (e: Event): void => {
+  e.preventDefault();
+};
+
 /**
- * スクロールを固定/固定解除する
- * @param fix trueで固定、falseで解除
+ * cancel or restart scroll event
+ * @param fix true to cancel scroll, false to restart
  */
 const toggleScrollEvent = (fix: boolean) => {
-  const cancelEvent = (e: Event): void => {
-    e.preventDefault();
+  const options: AddEventListenerOptions = {
+    passive: false,
+    once: false,
   };
+
   if (fix) {
-    // optionを全く同じにしないとIEでremoveされない
-    document.addEventListener('wheel', cancelEvent, false);
-    document.addEventListener('touchmove', cancelEvent, false);
+    document.addEventListener('wheel', cancelEvent, options);
+    document.addEventListener('touchmove', cancelEvent, options);
   } else {
-    document.removeEventListener('wheel', cancelEvent, false);
-    document.removeEventListener('touchmove', cancelEvent, false);
+    document.removeEventListener('wheel', cancelEvent, options);
+    document.removeEventListener('touchmove', cancelEvent, options);
   }
 };
 
