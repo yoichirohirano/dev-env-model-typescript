@@ -11,6 +11,7 @@ import EventEmitter from './util/EventEmitter';
 
 export default class Index {
   private errorCode: string = CONFIG.ERROR[404];
+
   /**
    * constructor
    */
