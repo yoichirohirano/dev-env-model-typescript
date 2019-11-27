@@ -1,5 +1,5 @@
 /**
- * get QueryParameters as Object instead of using URL.searchParams
+ * get QueryParameters as Object instead of using URL.searchParam
  * @returns QueryParameters
  */
 interface QueryParametersObject {
@@ -8,10 +8,10 @@ interface QueryParametersObject {
 
 const getQueryParametersForIE11 = (): QueryParametersObject => {
   const parameter: QueryParametersObject = {};
-  const searchParams: Array<string> = window.location.search
+  const searchParam: Array<string> = window.location.search
     .replace(/^\?/, '')
     .split('&');
-  searchParams.forEach(param => {
+  searchParam.forEach((param) => {
     const key: string = param.split('=')[0];
     const value: string = param.split('=')[1];
     parameter[key] = value;
