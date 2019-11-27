@@ -128,6 +128,18 @@
       "axios": true,
       "YT": true,
       "anime": true
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+          ]
+        }
+      }
     }
   },
   "jest": {
@@ -152,5 +164,10 @@
         "tsConfigFile": "tsconfig.json"
       }
     }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always"
   }
 }
