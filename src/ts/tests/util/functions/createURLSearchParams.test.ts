@@ -1,16 +1,18 @@
-import createURLSearchParam from '../../../util/functions/createURLSearchParam';
+import createURLSearchParamsFromObject from '../../../util/functions/createURLSearchParams';
 
-describe('createURLSearchParam', () => {
+describe('createURLSearchParamsFromObject', () => {
   const param = {
     property1: 'One',
-    property2: 2,
+    property2: '2',
   };
-  test('isInstanceOfURLSearchParam', () => {
-    expect(createURLSearchParam(param)).toBeInstanceOf(URLSearchParam);
+  test('isInstanceOfURLSearchParams', () => {
+    expect(createURLSearchParamsFromObject(param)).toBeInstanceOf(
+      URLSearchParams,
+    );
   });
   test('hasCorrectProperties', () => {
     const expectedRegExp = new RegExp('property1=One&property2=2');
-    const res = createURLSearchParam(param);
+    const res = createURLSearchParamsFromObject(param);
     expect(res.toString()).toMatch(expectedRegExp);
   });
 });

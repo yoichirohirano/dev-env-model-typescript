@@ -1,18 +1,20 @@
 /**
- * Create URLSearchParam Instance from Object
+ * Create URLSearchParams Instance from Object
  * @param param key:value
- * @returns URLSearchParam
+ * @returns URLSearchParams
  */
-const createURLSearchParam = (param: obj): URLSearchParam => {
-  const urlSearchParam = new URLSearchParam();
+const createURLSearchParamsFromObject = (
+  param: URLSearchParamsObject,
+): URLSearchParams => {
+  const urlSearchParams = new URLSearchParams();
   Object.entries(param).forEach(([key, value]) => {
-    urlSearchParam.append(key, value);
+    urlSearchParams.append(key, value);
   });
-  return urlSearchParam;
+  return urlSearchParams;
 };
 
-export default createURLSearchParam;
+export default createURLSearchParamsFromObject;
 
-type obj<T> = {
-  [key: string]: T;
+type URLSearchParamsObject = {
+  [key: string]: string;
 };
