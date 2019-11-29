@@ -3,9 +3,10 @@
  */
 export default class YouTubePlayer {
   private $player: HTMLElement;
+
   private id: string;
+
   private player: YT.Player | null;
-  private isPlaying: boolean;
 
   /**
    * constructor
@@ -16,7 +17,6 @@ export default class YouTubePlayer {
     this.$player = $player;
     this.id = id;
     this.player = null;
-    this.isPlaying = false;
 
     this.initialize();
   }
@@ -41,9 +41,11 @@ export default class YouTubePlayer {
       videoId: this.id,
       events: {
         // onReadyイベントが走るまでthis.playerはundefinedとなる
-        onReady: this.onReady.bind(this),
-        onStateChange: event => {
-          this.onStateChange(event);
+        onReady: () => {
+          this.onReady();
+        },
+        onStateChange: (event) => {
+          YouTubePlayer.onStateChange(event);
         },
       },
       playerVars: {
@@ -69,11 +71,9 @@ export default class YouTubePlayer {
     }
   }
 
-  onStateChange(event: YT.OnStateChangeEvent) {
+  static onStateChange(event: YT.OnStateChangeEvent) {
     if (event.data === YT.PlayerState.PLAYING) {
-      this.isPlaying = true;
-    } else if (event.data === YT.PlayerState.ENDED) {
-      this.isPlaying = false;
+      console.log('playing');
     }
   }
 
@@ -82,7 +82,6 @@ export default class YouTubePlayer {
    */
   play() {
     if (this.player) {
-      this.isPlaying = true;
       this.player.playVideo();
     }
   }
@@ -92,17 +91,16 @@ export default class YouTubePlayer {
    */
   stop() {
     if (this.player) {
-      this.isPlaying = false;
       this.player.stopVideo();
     }
   }
 
   /**
-   * YouTube Player API の初期処理
-   * @returns 初期化結果
+   * Initialize YouTube Player API
+   * @returns result
    */
   static loadYouTubeIFrameAPI(): Promise<boolean> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
       const firstScriptTag = document.getElementsByTagName('script')[0];

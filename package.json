@@ -5,21 +5,18 @@
   "author": "Yoichiro Hirano",
   "license": "MIT",
   "scripts": {
-    "dev": "npm-run-all -p build:pug 'develop:*' 'watch:*'",
-    "build": "npm-run-all -p 'build:*'",
-    "develop:js": "NODE_ENV=development webpack --watch --mode development --display-error-details --progress --colors",
-    "build:js": "NODE_ENV=production webpack --mode production --display-error-details --progress --colors",
+    "dev": "npm run develop:ts & npm run develop:pug",
+    "build": "npm run prettier && npm run build:ts && npm run build:pug",
+    "develop:ts": "NODE_ENV=development webpack --watch --mode development --display-error-details --progress --colors",
+    "build:ts": "NODE_ENV=production webpack --mode production --display-error-details --progress --colors",
+    "develop:pug": "pug ./src/pug/pages/*.pug --pretty -o ./dist -w",
     "build:pug": "pug ./src/pug/pages/*.pug --pretty -o ./dist",
-    "watch:pug": "chokidar './src/pug/**/*.pug' --command 'npm run build:pug'",
     "test": "jest --watch --silent=false --verbose false",
+    "prettier": "prettier --write './src/**/*.{ts,scss}'",
     "lint": "eslint ./src/ts/**/*.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
-    "@babel/plugin-transform-async-to-generator": "^7.5.0",
-    "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
     "@types/animejs": "^3.1.0",
     "@types/jest": "^24.0.17",
@@ -30,8 +27,6 @@
     "autoprefixer": "^9.5.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "chokidar-cli": "^2.1.0",
-    "cpx": "^1.5.0",
     "css-loader": "^3.0.0",
     "cssnano": "^4.1.10",
     "eslint": "^6.6.0",
@@ -41,7 +36,6 @@
     "jest": "^24.8.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.11.0",
-    "npm-run-all": "^4.1.5",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.19.1",
     "pug": "^2.0.3",
@@ -62,8 +56,7 @@
   "dependencies": {
     "animejs": "^3.1.0",
     "core-js": "^3.2.1",
-    "intersection-observer": "^0.7.0",
-    "regenerator-runtime": "^0.13.3"
+    "intersection-observer": "^0.7.0"
   },
   "babel": {
     "presets": [
@@ -82,11 +75,6 @@
           "debug": true
         }
       ]
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-object-rest-spread",
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-transform-async-to-generator"
     ]
   },
   "browserslist": [

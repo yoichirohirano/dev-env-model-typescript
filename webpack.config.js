@@ -135,8 +135,6 @@ module.exports = {
     // 共通プラグインを利用するときはこれを書いておけばインポート不要
     // 不要なものも記載するとグローバルからバンドルされるので注意
     // new webpack.ProvidePlugin({
-    //   $: 'jquery',
-    //   jQuery: 'jquery',
     //   velocity: 'velocity-animate',
     //   axios: 'axios',
     // }),

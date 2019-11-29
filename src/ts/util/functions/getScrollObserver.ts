@@ -72,10 +72,10 @@ export const getScrollObserver = (
   },
 ): IntersectionObserver => {
   // オブザーバーを定義
-  const observer = new IntersectionObserver(entries => {
+  const observer = new IntersectionObserver((entries) => {
     // 閾値(thresholds)を前後するたびにトリガー
     // entriesには閾値を超えたターゲットのみが[]で入ってくる
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       // callbackをトリガー(したか結果を格納)
       const triggered = callbackTriggered(entry, callbacks);
       // 一回のみのトリガーの場合は監視を解除
