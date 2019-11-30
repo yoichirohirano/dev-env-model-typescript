@@ -7,19 +7,26 @@
 
 import '../scss/index.scss';
 import CONFIG from './util/CONFIG';
-import EventEmitter from './util/EventEmitter';
+// import EventEmitter from './util/EventEmitter';
+import createYouTubePlayer from './modules/createYouTubePlayer';
 
 export default class Index {
   private errorCode: string = CONFIG.ERROR[404];
+
+  private player: YT.Player | null;
 
   /**
    * constructor
    */
   constructor() {
-    EventEmitter.on('test', () => {
-      console.log(this.errorCode);
-    });
-    EventEmitter.emit('test');
+    this.player = null;
+    this.play();
+  }
+
+  async play() {
+    const $el = document.querySelector('.player') as HTMLElement;
+    this.player = await createYouTubePlayer($el, 'tUe6YedzjlM');
+    this.player.playVideo();
   }
 }
 
