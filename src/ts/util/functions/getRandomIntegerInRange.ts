@@ -5,7 +5,8 @@
  * @param max 最大値
  * @returns 乱整数
  */
-const getRandomIntegerInRange = (min: number = 0, max: number = 0): number =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
+const getRandomIntegerInRange = (min: number = 0, max: number = 0): number => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 export default getRandomIntegerInRange;
