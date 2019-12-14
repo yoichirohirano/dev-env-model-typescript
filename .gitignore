@@ -1,17 +1,36 @@
-.DS_Store
+# dependencies
 node_modules
-/dist
-yarn.lock
+/.pnp
+.pnp.js
 
-# local env files
+# testing
+/coverage
+
+# production
+/build
+/dist
+
+# misc
+.DS_Store
 .env.local
-.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# firebase
+/.firebase
+FIREBASE_CONFIG.js
+.firebaserc
 firebase-debug.log*
+
+# local env files
+.env.local
+.env.*.local
 
 # Editor directories and files
 .idea
