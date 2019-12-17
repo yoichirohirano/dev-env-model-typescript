@@ -6,13 +6,11 @@
  */
 
 import '../scss/index.scss';
-import CONFIG from './util/CONFIG';
+// import CONFIG from './util/CONFIG';
 // import EventEmitter from './util/EventEmitter';
 import createYouTubePlayer from './modules/createYouTubePlayer';
 
 export default class Index {
-  private errorCode: string = CONFIG.ERROR[404];
-
   private player: YT.Player | null;
 
   /**
