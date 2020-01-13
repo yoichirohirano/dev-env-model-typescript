@@ -13,7 +13,8 @@
     "build:pug": "pug ./src/pug/pages/*.pug --pretty -o ./dist",
     "test": "jest --watch --silent=false --verbose false",
     "prettier": "prettier --write './src/**/*.{ts,scss}'",
-    "lint": "eslint ./src/ts/**/*.ts"
+    "lint": "eslint ./src/ts/**/*.ts",
+    "stylelint": "stylelint ./src/scss/**/*.scss --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -44,6 +45,10 @@
     "sass": "^1.23.1",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
+    "stylelint": "^13.0.0",
+    "stylelint-config-prettier": "^8.0.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-order": "^4.0.0",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",
     "typescript": "^3.7.2",
@@ -157,5 +162,11 @@
     "singleQuote": true,
     "trailingComma": "all",
     "arrowParens": "always"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-prettier",
+      "stylelint-config-rational-order"
+    ]
   }
 }

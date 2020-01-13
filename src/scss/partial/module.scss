@@ -1,17 +1,20 @@
 %clearfix {
-  &:after {
-    content: '';
+  &::after {
     display: block;
     clear: both;
+    content: '';
   }
 }
+
 %bg_txt_none {
-  text-indent: -9999px;
   overflow: hidden;
+  text-indent: -9999px;
 }
+
 %bonus-animation {
   transition: all 1s ease;
 }
+
 .nowrap {
   white-space: nowrap;
 }

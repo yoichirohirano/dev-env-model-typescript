@@ -7,7 +7,6 @@
 
 import '../scss/index.scss';
 // import CONFIG from './util/CONFIG';
-// import EventEmitter from './util/EventEmitter';
 import createYouTubePlayer from './modules/createYouTubePlayer';
 
 export default class Index {
@@ -18,7 +17,7 @@ export default class Index {
    */
   constructor() {
     this.player = null;
-    this.play();
+    // this.play();
   }
 
   async play() {
