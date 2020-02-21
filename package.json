@@ -26,7 +26,6 @@
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.8.0",
     "autoprefixer": "^9.5.0",
-    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "cssnano": "^4.1.10",
@@ -99,7 +98,17 @@
       "no-alert": 0,
       "no-debugger": 1,
       "no-param-reassign": 0,
-      "@typescript-eslint/rule-name": "error"
+      "@typescript-eslint/rule-name": "error",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }
+      ]
     },
     "env": {
       "browser": true,
@@ -111,10 +120,6 @@
     "extends": [
       "airbnb-base"
     ],
-    "parserOptions": {
-      "parser": "@typescript-eslint/parser",
-      "sourceType": "module"
-    },
     "globals": {
       "velocity": true,
       "_": true,
@@ -157,11 +162,6 @@
         "tsConfigFile": "tsconfig.json"
       }
     }
-  },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "all",
-    "arrowParens": "always"
   },
   "stylelint": {
     "extends": [
