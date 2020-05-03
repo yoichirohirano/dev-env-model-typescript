@@ -3,12 +3,14 @@
  * @param hex
  * @param alpha
  */
-const convertHexToRgba = (hex: string, alpha: number = 1):string | null => {
+const convertHexToRgba = (hex: string, alpha = 1): string | null => {
   let r = null;
   let g = null;
   let b = null;
-  const a = (alpha >= 0 && alpha <= 1) ? alpha : 1;
-  const matchListLong = hex.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
+  const a = alpha >= 0 && alpha <= 1 ? alpha : 1;
+  const matchListLong = hex.match(
+    /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i,
+  );
   const matchListShort = hex.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/i);
 
   if (matchListLong) {
